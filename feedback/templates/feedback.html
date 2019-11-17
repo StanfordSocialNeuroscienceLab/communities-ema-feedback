@@ -1,0 +1,253 @@
+<!-- HTML template from https://getbootstrap.com/docs/4.0/examples/ -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Feedback</title>
+
+    <!-- Stanford Brand Font -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <!-- Supplementary, heavier-blocked font -->
+    <link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- CSS for this project -->
+    <style>
+    body {
+      background-color: linen;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    #fixed-width {
+      width: 1200px;
+      min-width: 1200px;
+      max-width: 1200px;
+    }
+    .header-row {
+      background-color: #8c1515;
+      color: white;
+      text-align: center;
+      line-height: 150px;
+      border-bottom: 1px solid #E0ACAC;
+      font-size: 50px;
+    }
+    .logo-col {
+      padding: 0;
+    }
+    #logo {
+      height: 110px;
+      margin: 20px;
+      background-image: url("{{ url_for('static', filename='stanford-logo.png') }}");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right;
+    }
+
+    #name-row {
+      background-color: white;
+      color: #8c1515;
+      height: 220px;
+      min-height: 220px;
+      max-height: 220px;
+
+      background-image: url("{{ url_for('static', filename='graph.png') }}"), url("{{ url_for('static', filename='graph.png') }}");;
+      background-size: 600px auto, 600px auto;
+      background-repeat: no-repeat, no-repeat;
+      background-position: left -10px bottom -180px, right 10px top -240px;
+    }
+
+    #a-brief-summary-for {
+      position: absolute;
+      left: 120px;
+      top: 30px;
+      font-size: 30px;
+    }
+
+    #name {
+      position: absolute;
+      left: 500px;
+      top: 60px;
+      font-size: 60px;
+      font-weight: bold;
+      border: 6px solid #8c1515;
+      padding: 10px;
+    }
+
+    #ping-row {
+      height: 230px;
+      min-height: 230px;
+      max-height: 230px;
+      background-color: #D57D7D;
+    }
+    #ping-percent {
+      color: white;
+      font-size: 30px;
+      position: absolute;
+      left: 30px;
+      top: 30px;
+    }
+    #amount-earned-label {
+      color: #8c1515;
+      font-size: 50px;
+      position: absolute;
+      left: 260px;
+      bottom: 20px;
+      line-height: 45px;
+      text-align: center;
+    }
+    #completion-streak-label {
+      color: white;
+      font-size: 40px;
+      position: absolute;
+      left: 0px;
+      top: 30px;
+    }
+    #completion-streak {
+      color: #8c1515;
+      font-size: 140px;
+      font-weight: 900;
+      position: absolute;
+      left: 160px;
+      top: 40px;
+    }
+    #streak-days {
+      font-size: 30%;
+    }
+    #circle {
+      position: absolute;
+      left: 150px;
+      top: -180px;
+      width: 400px;
+    }
+
+    #activity-row {
+      min-height: 400px;
+      background-color: #EAC1C2;
+    }
+    #amount-earned {
+      color: white;
+      font-size: 160px;
+      position: absolute;
+      left: 230px;
+      top: -45px;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      /*font-family: 'Exo', sans-serif;*/
+      font-weight: 900;
+    }
+
+    #low-stress-activity, #happiness-activity {
+      color: #8c1515;
+      border: 10px solid white;
+      font-size: 28px;
+      padding: 10px;
+    }
+    #low-stress-activity {
+      margin-top: 250px;
+      margin-bottom: 10px;
+    }
+    #happiness-activity {
+      margin-top: 50px;
+      margin-bottom: 10px;
+    }
+    #low-stress-activity-title, #happiness-activity-title {
+      color: white;
+      font-size: 60px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    #contacts-row {
+      min-height: 200px;
+      background-color: white;
+    }
+
+
+    .footer-row  {
+      background-color: #8c1515;
+      color: white;
+      text-align: center;
+      line-height: 80px;
+      border-top: 1px solid #E0ACAC;
+      font-size: 30px;
+    }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="container" id="fixed-width">
+      <div class="row header-row">
+        <div class="col-2">
+        </div>
+        <div class="col-8 title-col">
+          Stanford Communities Project
+        </div>
+        <div class="col-2 logo-col">
+          <div id="logo"></div>
+        </div>
+      </div>
+
+      <div class="row" id="name-row">
+        <div class="col-12 name-col">
+          <div id="a-brief-summary-for">A brief summary for...</div>
+          <div id="name">{{name}}</div>
+        </div>
+      </div>
+
+      <div class="row" id="ping-row">
+        <div class="col-6">
+          <div id="ping-percent">{{ping_pct}}% of pings<br>completed</div>
+          <div id="amount-earned-label">AMOUNT<br>EARNED</div>
+        </div>
+        <div class="col-6">
+          <div id="completion-streak-label">LONGEST COMPLETION STREAK</div>
+          <div id="completion-streak">{{streak}} <span id="streak-days">DAYS</span></div>
+        </div>
+      </div>
+
+      <div class="row" id="activity-row">
+        <div class="col-6">
+          <img src="{{ url_for('static', filename='circle.png') }}" id="circle">
+          <div id="amount-earned">${{amount_earned}}</div>
+          <div id="low-stress-activity">
+            <div id="low-stress-activity-title">Low-Stress Activity</div>
+            <p>Based on your responses, your stress level is the lowest when you are <b><u>{{low_stress_me}}</u></b>.</p>
+            <p>Based on <em>everyone's</em> responses, participants’ stress level is the lowest when they are <b><u>{{low_stress_everyone}}</u></b>.
+          </div>
+        </div>
+        <div class="col-6">
+          <div id="happiness-activity">
+            <div id="happiness-activity-title">Happiness Activity</div>
+            <p>Based on your responses, you are happiest when you are <b><u>{{happiness_me}}</u></b>.</p>
+            <p>Based on <em>everyone's</em> responses, participants are happiest when they are <b><u>{{hapiness_everyone}}</u></b>.
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="contacts-row">
+        <div class="col-12">
+        </div>
+      </div>
+
+      <div class="row footer-row">
+        <div class="col-12">
+          contact: communitiesproject@stanford.edu
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
