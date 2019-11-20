@@ -198,35 +198,35 @@
       <div class="row" id="name-row">
         <div class="col-12 name-col">
           <div id="a-brief-summary-for">A brief summary for...</div>
-          <div id="name">{{name}}</div>
+          <div id="name">{{g.participant['fullname']}}</div>
         </div>
       </div>
 
       <div class="row" id="ping-row">
         <div class="col-6">
-          <div id="ping-percent">{{ping_pct}}% of pings<br>completed</div>
+          <div id="ping-percent">{{g.participant['pct_pings_completed']|float|round|int}}% of pings<br>completed</div>
           <div id="amount-earned-label">AMOUNT<br>EARNED</div>
         </div>
         <div class="col-6">
           <div id="completion-streak-label">LONGEST COMPLETION STREAK</div>
-          <div id="completion-streak">{{streak}} <span id="streak-days">DAYS</span></div>
+          <div id="completion-streak">{{g.participant['completion_streak']}} <span id="streak-days">DAYS</span></div>
         </div>
       </div>
 
       <div class="row" id="activity-row">
         <div class="col-6">
           <img src="{{ url_for('static', filename='circle.png') }}" id="circle">
-          <div id="amount-earned">${{amount_earned}}</div>
+          <div id="amount-earned">${{g.participant['amount_earned']|round|int}}</div>
           <div id="low-stress-activity">
             <div id="low-stress-activity-title">Low-Stress Activity</div>
-            <p>Based on your responses, your stress level is the lowest when you are <b><u>{{low_stress_me}}</u></b>.</p>
+            <p>Based on your responses, your stress level is the lowest when you are <b><u>{{g.participant['activity_low_stress']}}</u></b>.</p>
             <p>Based on <em>everyone's</em> responses, participants’ stress level is the lowest when they are <b><u>{{low_stress_everyone}}</u></b>.
           </div>
         </div>
         <div class="col-6">
           <div id="happiness-activity">
             <div id="happiness-activity-title">Happiness Activity</div>
-            <p>Based on your responses, you are happiest when you are <b><u>{{happiness_me}}</u></b>.</p>
+            <p>Based on your responses, you are happiest when you are <b><u>{{g.participant['activity_happiness']}}</u></b>.</p>
             <p>Based on <em>everyone's</em> responses, participants are happiest when they are <b><u>{{hapiness_everyone}}</u></b>.
           </div>
         </div>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <label for="fullname">Full Name</label>
+    <input name="fullname" id="fullname" required>
+
+    <label for="pct_pings_completed">% Pings Completed</label>
+    <input name="pct_pings_completed" id="pct_pings_completed" required>
+
+    <label for="amount_earned">Amount earned $</label>
+    <input name="amount_earned" id="amount_earned" required>
+
+    <label for="completion_streak">Completion Streak</label>
+    <input name="completion_streak" id="completion_streak" required>
+
+    <label for="activity_low_stress">Low Stress Activities:</label>
+    <input name="activity_low_stress" id="activity_low_stress" required>
+
+    <label for="activity_happiness">Happiness Activities</label>
+    <input name="activity_happiness" id="activity_happiness" required>
+
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}

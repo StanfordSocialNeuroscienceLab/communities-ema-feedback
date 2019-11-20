@@ -2,13 +2,17 @@ import os
 
 from flask import Flask, render_template
 
+from feedback.auth import login_required
+
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'feeedback.sqlite'),
+        SECRET_KEY=os.environ['SECRET_KEY'],
+        # DATABASE=os.path.join(app.instance_path, 'feeedback.sqlite'),
+        # SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL']
+        DATABASE_URL=os.environ['DATABASE_URL']
     )
 
     if test_config is None:
@@ -24,14 +28,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
     @app.route('/')
-    def hello():
+    @login_required
+    def index():
         return render_template('feedback.html',
-            name='Sally Student', ping_pct=95, streak=99, amount_earned=50,
-            low_stress_me="socializing",
             low_stress_everyone="using the internet/apps",
-            happiness_me="exercising",
             happiness_everyone="eating/drinking")
 
     from . import db
@@ -41,3 +42,5 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
 
     return app
+
+feedback_app = create_app()

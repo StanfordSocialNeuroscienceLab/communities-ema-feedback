@@ -1,1 +1,1 @@
-web: gunicorn app:feedback
+web: gunicorn feedback:feedback_app
