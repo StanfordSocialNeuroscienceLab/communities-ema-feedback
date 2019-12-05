@@ -142,7 +142,12 @@
       /*font-family: 'Exo', sans-serif;*/
       font-weight: 900;
     }
-
+    #low-stress-activity-title, #happiness-activity-title {
+      color: white;
+      font-size: 60px;
+      text-align: center;
+      font-weight: 900;
+    }
     #low-stress-activity, #happiness-activity {
       color: #8c1515;
       border: 10px solid white;
@@ -157,18 +162,43 @@
       margin-top: 50px;
       margin-bottom: 10px;
     }
-    #low-stress-activity-title, #happiness-activity-title {
+
+    #common-activities-title {
       color: white;
-      font-size: 60px;
+      font-size: 35px;
       text-align: center;
       font-weight: 900;
+      /*text-transform: uppercase;*/
+    }
+    .common-activity {
+      color: #8c1515;
+      font-size: 35px;
+      text-align: center;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin: 0;
     }
 
     #contacts-row {
-      min-height: 200px;
+      /*min-height: 200px;*/
       background-color: white;
+      padding: 30px 0;
     }
 
+    #interaction-partners-title {
+      color: #8c1515;
+      font-size: 40px;
+      text-align: center;
+      font-weight: 900;
+      /*text-transform: uppercase;*/
+    }
+    #interaction-partners {
+      color: #8c1515;
+      font-size: 50px;
+      text-align: center;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
 
     .footer-row  {
       background-color: #8c1515;
@@ -177,6 +207,11 @@
       line-height: 80px;
       border-top: 1px solid #E0ACAC;
       font-size: 30px;
+    }
+    #logout_link {
+      color: white;
+      font-size: 20px;
+      text-align: right;
     }
     </style>
 
@@ -220,27 +255,41 @@
           <div id="low-stress-activity">
             <div id="low-stress-activity-title">Low-Stress Activity</div>
             <p>Based on your responses, your stress level is the lowest when you are <b><u>{{g.participant['activity_low_stress']}}</u></b>.</p>
-            <p>Based on <em>everyone's</em> responses, participants’ stress level is the lowest when they are <b><u>{{low_stress_everyone}}</u></b>.
+            <p>Based on <em>everyone's</em> responses, participants’ stress level is the lowest when they are <b><u>studying</u></b>.
           </div>
         </div>
         <div class="col-6">
           <div id="happiness-activity">
             <div id="happiness-activity-title">Happiness Activity</div>
             <p>Based on your responses, you are happiest when you are <b><u>{{g.participant['activity_happiness']}}</u></b>.</p>
-            <p>Based on <em>everyone's</em> responses, participants are happiest when they are <b><u>{{hapiness_everyone}}</u></b>.
+            <p>Based on <em>everyone's</em> responses, participants are happiest when they are <b><u>socializing / partying</u></b>.
+          </div>
+          <div id="common-activities">
+            <div id="common-activities-title">Your most common activities</div>
+            {% for act in common_activities %}
+            <p class="common-activity">{{act}}</p>
+            {% endfor %}
           </div>
         </div>
       </div>
 
       <div class="row" id="contacts-row">
         <div class="col-12">
+          <div id="interaction-partners-title">
+            Types of people you interact with the most:
+          </div>
+          <div id="interaction-partners">
+              {% for partner in interaction_partners %}{% if loop.index > 1 %}, {% endif %}{{partner}}{% endfor %}
+          </div>
         </div>
       </div>
 
       <div class="row footer-row">
-        <div class="col-12">
+        <div class="col-2"></div>
+        <div class="col-8">
           contact: communitiesproject@stanford.edu
         </div>
+        <div class="col-2"><a href="{{url_for('auth.logout')}}" id="logout_link">[ Log out ]</a></div>
       </div>
 
     </div> <!-- /container -->

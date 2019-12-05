@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, g
 
 from feedback.auth import login_required
 
@@ -31,9 +31,19 @@ def create_app(test_config=None):
     @app.route('/')
     @login_required
     def index():
+        common_activities = []
+        for i in range(1, 4):
+            col = 'common_activity_%d' % i
+            if g.participant[col]:
+                common_activities.append(g.participant[col])
+        interaction_partners = []
+        for i in range(1, 4):
+            col = 'interaction_partner_%d' % i
+            if g.participant[col]:
+                interaction_partners.append(g.participant[col])
         return render_template('feedback.html',
-            low_stress_everyone="using the internet/apps",
-            happiness_everyone="eating/drinking")
+            common_activities=common_activities,
+            interaction_partners=interaction_partners)
 
     from . import db
     db.init_app(app)
