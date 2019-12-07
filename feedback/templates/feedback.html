@@ -69,6 +69,18 @@
       font-size: 30px;
     }
 
+    #name-col {
+      text-align: center;
+      margin: auto;
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    #your-activity-report {
+      border: 6px solid #8c1515;
+      padding: 10px;
+    }
+
     #name {
       position: absolute;
       left: 500px;
@@ -231,9 +243,10 @@
       </div>
 
       <div class="row" id="name-row">
-        <div class="col-12 name-col">
-          <div id="a-brief-summary-for">A brief summary for...</div>
-          <div id="name">{{g.participant['fullname']}}</div>
+        <div class="col-12" id="name-col">
+          <!-- <div id="a-brief-summary-for">A brief summary for...</div> -->
+          <!-- <div id="name">{{g.participant['fullname']}}</div> -->
+          <span id="your-activity-report">Your activity report</span>
         </div>
       </div>
 
